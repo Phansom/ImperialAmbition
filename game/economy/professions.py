@@ -1,12 +1,12 @@
 
 
 class Professions:
-    def __init__(self, occupations, economy):
+    def __init__(self, occupation, occupations, economy):
         self.economy = economy
         self.land_data = economy.business.used_land_list
 
         agriculture_data = occupations["agriculture"]
-        print(self.max_profession(agriculture_data, "farmer"))
+        #print(self.max_profession(agriculture_data, "farmer"))
 
 
     def max_profession(self, occupation, profession):

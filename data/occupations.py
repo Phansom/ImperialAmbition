@@ -27,7 +27,7 @@ OCCUPATIONS = {
         "tailor": {
             "produces": {"clothes": 0.5},
             "consumes": {"wool": 1.0},
-            "requires": {"industrial": 0.2}
+            "requires": {"industrial": 1.0}
                     },
         "carpenter": {
             "produces": {"furniture": 0.5},

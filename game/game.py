@@ -38,8 +38,10 @@ class Game:
                     sys.exit()
                 if event.key == pg.K_SPACE:
                     pass
-                    # TODO: new economy turn or w/e
-
+            if event.type == pg.USEREVENT:
+                if event.user_type == pgui.UI_BUTTON_PRESSED:
+                    self.gui.handle_button(event.ui_element)
+            self.manager.process_events(event)
 
     def draw(self):
         self.window_surface.blit(self.background, (0,0))

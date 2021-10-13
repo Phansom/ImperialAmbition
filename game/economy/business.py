@@ -14,12 +14,12 @@ class Business:
     business_area = float
     business_area_types = ["farmland","rangeland","fishery","woodland","quarry","mine","industrial","commercial",
                            "residential"]
-    business_area_makeup = {}
 
     def business_data(self):
-        print(self.used_land())
-        print(self.total_land)
-        business_data = f'<br>LAND: {self.total_land}'
+        business_data = f'<b><u>land       : {self.total_land}</u></b><br>' \
+                        f'biomes     : {self.remaining_land()}<br>' \
+                        f'anthromes  : {self.used_land()}'
+
         return business_data
 
 

@@ -21,6 +21,10 @@ class Gui:
         self.main_panel = MainDisplay(self, loc, size)
 
 
+    def handle_button(self, button):
+        if button in self.main_panel.data_buttons:
+            self.main_panel.change_main_display(button.text)
+
 
 
 
