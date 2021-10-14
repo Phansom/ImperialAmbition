@@ -1,15 +1,15 @@
 OCCUPATIONS = {
 
     "agriculture": {
-        "farmer": {"produces": {"grain": 1.0},
+        "farmer": {"produces": {"grain": 2.5},
                    "requires": {"farmland": 1.0}
                    },
-
-        "rancher": {"produces":{"meat": 0.65, "leather": 0.2},
+        "fisher": {"produces":{"fish": 2.0},
+                   "requires": {"fishery": 1.0}
+                   },
+        "rancher": {"produces": {"meat": 1.5},
                     "requires": {"rangeland": 1.0}
                     },
-        "fisher": {"produces":{"fish": 0.85},
-                   "requires": {"fishery": 1.0}}
     },
 
     "extraction": {

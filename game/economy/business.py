@@ -1,10 +1,10 @@
 from dataclasses import dataclass
-from data.player_city import PLAYER_CITY
+from data.player_city import PLAYER_LAND
 
 @dataclass
 class Business:
     def __init__(self):
-        self.player_city = PLAYER_CITY
+        self.player_city = PLAYER_LAND
         self.total_land = self.player_city["max_land"]
 
         self.used_land_list = self.used_land_list()

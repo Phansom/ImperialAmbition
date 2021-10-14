@@ -2,6 +2,7 @@ import pygame as pg
 from game.game import Game
 
 
+
 def main():
     pg.init()
 

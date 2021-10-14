@@ -14,23 +14,19 @@ class MainDisplay:
         self.labor_data = self.economy.labor.labor_data
         self.business_data = self.economy.business.business_data
 
-        self.data_display_txt = self.data_display_txt_home(self.labor_data, self.business_data)
+        self.data_display_txt = self.data_display_txt_home()
         self.data_display = self.main_data_display(self.data_display_txt)
         self.data_buttons = self.data_buttons()
         self.buttons_dict = self.buttons_list_to_dict(self.data_buttons)
 
     def change_main_display(self, button_text):
         self.data_display.kill()
-        button = self.get_data_button(button_text)
         display_txt = self.load_button_text_data(button_text)
         self.main_data_display(display_txt)
 
 
-
-    def data_display_txt_home(self, labor, business):
-        txt = f'{labor}<br>' \
-              f' <br> <br>' \
-              f'{business}<br>'
+    def data_display_txt_home(self):
+        txt = self.labor_data
         return txt
 
 
@@ -74,8 +70,8 @@ class MainDisplay:
 
     def load_button_text_data(self, button_text):
         return {
-            'pop': self.economy.labor.professions_list,
-            'work':self.labor_data,
+            'pop': self.labor_data,
+            'work':self.economy.resource_data_txt(),
             'land':self.business_data
         }.get(button_text, "The data wasn't found!")
 
