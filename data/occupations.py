@@ -7,16 +7,16 @@ OCCUPATIONS = {
         "fisher": {"produces":{"fish": 2.0},
                    "requires": {"fishery": 1.0}
                    },
-        "rancher": {"produces": {"meat": 1.5},
-                    "requires": {"rangeland": 1.0}
-                    },
+        "shepherd": {"produces": {"meat": 0.8, "wool": 1.2},
+                     "requires": {"rangeland": 1.0}
+                     },
     },
 
     "extraction": {
-        "logger": {"produces":{"wood": 1.0},
+        "logger": {"produces":{"wood": 2.0},
                    "requires": {"woodland": 1.0}
                    },
-        "excavator": {"produces":{"stone": 0.5},
+        "excavator": {"produces":{"stone": 1.0},
                       "requires": {"quarry": 1.0}
                       },
         "miner": {"produces":{"metal": 0.5},
@@ -38,11 +38,6 @@ OCCUPATIONS = {
             "produces": {"tools": 0.5},
             "consumes": {"metal": 1.0, "wood":0.5},
             "requires": {"industrial":1.0}
-        },
-        "weaponsmith": {
-            "produces": {"weapons": 0.5},
-            "consumes": {"metal": 1.0, "leather": 0.25, "wood": 0.25},
-            "requires":{"industrial":1.0}
         }
     },
 

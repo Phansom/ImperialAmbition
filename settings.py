@@ -1,9 +1,15 @@
-DATA_BUTTON_NAMES = ["pop", "work", "land","update"
-                     ]
+DATA_BUTTON_NAMES = ["home","pop", "work", "land","update"]
+
+
+
 DEMAND_RATE = {
-    "food": 0.75,
+    "grain": 0.5,
+    "fish": 0.125,
+    "meat": 0.125,
+    "wool": 0.1,
     "clothes": 0.1,
-    "furniture": 0.05
+    "furniture": 0.05,
+    "tools": 0.025
 }
 
 HOUSING_RATE = {
