@@ -5,6 +5,7 @@ from .main_display import MainDisplay
 class Gui:
 
     def __init__(self, game, manager, window_surface, clock):
+        self.font_dictionary = pgui.core.interfaces.font_dictionary_interface.IUIFontDictionaryInterface
         self.game = game
         self.window_surface = window_surface
         self.clock = clock
@@ -15,7 +16,6 @@ class Gui:
             manager= self.manager,
             starting_layer_height = 0
         )
-
         loc = [0,0]
         size = [self.width, self.height]
         self.main_panel = MainDisplay(self, loc, size)

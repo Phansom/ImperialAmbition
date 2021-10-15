@@ -1,12 +1,5 @@
 from data.player_city import PLAYER_RESOURCES
 
-
-class Resource:
-    type = str
-    count = float
-    production = float
-    consumption = float
-
 def get_resource_type(resource):
     for type in resource_types:
         resources_of_type = resource_types[type]
@@ -14,10 +7,17 @@ def get_resource_type(resource):
             if item == resource:
                 return type
 
+def get_type_resources(type):
+    resources_of_type = resource_types[type]
+    return resources_of_type
+
+
 def get_resource_count(resource):
+    resource_data = 0
     type = get_resource_type(resource)
-    resources = PLAYER_RESOURCES[type]
-    resource_data = resources[resource]
+    if type in PLAYER_RESOURCES:
+        resources = PLAYER_RESOURCES[type]
+        resource_data = resources[resource]
     return resource_data
 
 def get_resource_production(production_list, resource):
@@ -36,13 +36,36 @@ def get_type_production(production_list, type):
             count += production_list[resource]
     return count
 
+def get_type_consumption(consumption_list, type):
+    for resource in consumption_list:
+        resource_type = get_resource_type(resource)
+
 
 resource_types = {
-    "food": {"grain", "meat", "fish"},
-    "materials": {"wood","stone","metal"},
-    "refined": {"clothes","furniture","tools","weapons"},
-    "trade":{"local_trade","regional_trade"},
-    "construction":{"resource","residential","commercial","industrial"}
+    "grain": "food",
+    "meat": "food",
+    "fish": "food",
+    "wood": "materials",
+    "stone": "materials",
+    "metal": "materials",
+    "clothes": "refined",
+    "furniture": "refined",
+    "tools": "refined",
+    "weapons": "refined"
+}
+
+service_types = {
+    "local_trade": "trade",
+    "regional_trade": "trade",
+    "construction": "construction"
+}
+
+construction_types = {
+    "resource",
+    "residential",
+    "commercial",
+    "industrial",
+    "infrastructure"
 }
 
 

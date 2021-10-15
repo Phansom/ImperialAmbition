@@ -1,19 +1,17 @@
 from dataclasses import dataclass
 from data.occupations import OCCUPATIONS
+from data.player_city import PLAYER_WORKERS
 from .professions import Professions
 
 
+
 @dataclass
-class Labor:
+class Work:
     def __init__(self, economy):
         self.economy = economy
         self.occupations = OCCUPATIONS
         self.professions_list = self.professions_list()
-        self.labor_data = self.labor_data()
-
-    employed: int = 0
-    population: int = 1000
-    workforce_rate: float = 0.5
+        self.work_data = self.labor_data()
 
     def professions_list(self):
         professions_list = []
@@ -31,12 +29,18 @@ class Labor:
         return profession
 
 
-    def workforce(self):
-        return int(self.population * self.workforce_rate)
+    def workers_in_profession(self, profession):
+        num_workers = PLAYER_WORKERS.get(profession)
+        return num_workers
+
+
+    def employed(self):
+        employed = 0
+        return employed
 
 
     def unemployed(self):
-        return int(self.workforce() - self.employed)
+        return int(self.economy.population.workers - self.employed())
 
 
     def job_capacity(self, profession, business_area):
@@ -51,8 +55,8 @@ class Labor:
 
     def labor_data(self):
         business = self.economy.business
-        pop = self.population
-        workforce = self.workforce()
+        pop = self.economy.population.size
+        workers = self.economy.population.calc_workers()
         unemployed = self.unemployed()
         occupations = self.occupations
         txt = ""

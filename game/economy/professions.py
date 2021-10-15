@@ -3,7 +3,7 @@
 class Professions:
     def __init__(self, occupation, occupations, economy):
         self.economy = economy
-        self.land_data = economy.business.used_land_list
+        self.land_data = economy.business.player_anthrome_list
 
         agriculture_data = occupations["agriculture"]
         #print(self.max_profession(agriculture_data, "farmer"))

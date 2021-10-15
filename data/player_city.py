@@ -27,6 +27,10 @@ PLAYER_WORKERS = {
     "builder": 10,
 }
 
+PLAYER_POPULATION = {
+    "size":1100,
+}
+
 PLAYER_RESOURCES = {
     "food": {"grain":{"count": 100}, "meat":{"count":50}, "fish":{"count":20}},
     "materials": {"wood":{"count": 25},"stone":{"count": 25},"metal":{"count": 10}},

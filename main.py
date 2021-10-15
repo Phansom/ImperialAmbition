@@ -1,4 +1,5 @@
 import pygame as pg
+import pygame_gui
 from game.game import Game
 
 
