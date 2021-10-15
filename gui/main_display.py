@@ -22,6 +22,7 @@ class MainDisplay:
         self.data_buttons = self.data_buttons()
         self.buttons_dict = self.buttons_list_to_dict(self.data_buttons)
 
+
     def change_main_display(self, button_text):
         self.data_display.kill()
         display_txt = self.load_button_text_data(button_text)
@@ -89,6 +90,7 @@ class MainDisplay:
 
     def load_button_text_data(self, button_text):
         return {
+            'home': self.data_display_txt,
             'pop': self.pop_data_txt,
             'work': self.work_data,
             'land':self.business_data,

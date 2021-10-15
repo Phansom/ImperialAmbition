@@ -51,7 +51,6 @@ resource_types = {
     "clothes": "refined",
     "furniture": "refined",
     "tools": "refined",
-    "weapons": "refined"
 }
 
 service_types = {
@@ -66,6 +65,19 @@ construction_types = {
     "commercial",
     "industrial",
     "infrastructure"
+}
+
+default_resource_prices = {
+    "grain":  1.0,
+    "fish": 1.25,
+    "meat": 1.5,
+    "wool": 1.0,
+    "wood": 1.25,
+    "stone": 2.5,
+    "metal": 5.0,
+    "clothes": 7.0,
+    "furniture": 8.0,
+    "tools": 12.0,
 }
 
 
