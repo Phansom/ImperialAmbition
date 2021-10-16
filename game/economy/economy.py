@@ -61,9 +61,10 @@ class Economy:
             if resource in demand_list:
                 demand = demand_list[resource]
 
+            original_price = default_resource_prices[resource]
             old_price = resource_prices[resource]
             trend_mult = self.trending_multiplier(supply,demand)
-            trending = self.trending_price(old_price, trend_mult)
+            trending = self.trending_price(original_price, old_price, trend_mult)
             new_price = self.resource_price_change(trending, old_price)
             new_resource_prices[resource] = new_price
 
@@ -93,8 +94,9 @@ class Economy:
         return trending_multiplier
 
 
-    def trending_price(self, current_price, trending_multiplier):
-        trending_price = current_price * trending_multiplier
+    def trending_price(self, original_price, current_price, trending_multiplier):
+        price_consistency = (original_price/current_price)
+        trending_price = current_price * (trending_multiplier * price_consistency)
         return trending_price
 
 

@@ -1,7 +1,6 @@
 DATA_BUTTON_NAMES = ["home","pop", "work", "land","update"]
 
 
-
 DEMAND_RATE = {
     "grain": 0.5,
     "fish": 0.125,

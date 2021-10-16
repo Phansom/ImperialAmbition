@@ -13,6 +13,7 @@ class Work:
         self.professions_list = self.professions_list()
         self.work_data = self.labor_data()
 
+
     def professions_list(self):
         professions_list = []
         for occupation in self.occupations:
@@ -34,14 +35,10 @@ class Work:
         return num_workers
 
 
-    def employed(self):
-        employed = 0
-        return employed
-
-
     def unemployed(self):
-        return int(self.economy.population.workers - self.employed())
-
+        workers = self.economy.population.workers
+        employed = 0
+        unemployed = workers - employed
 
     def job_capacity(self, profession, business_area):
         land_required_per_worker = profession["requires"]
@@ -73,4 +70,3 @@ class Work:
                         max_workers = land_type_quantity/land_required_per_worker
                         txt += f'{profession}: 0/{int(max_workers)}<br>'
         return txt
-

@@ -1,6 +1,7 @@
 import pygame as pg
 import pygame_gui as pgui
 from .main_display import MainDisplay
+from .resource_panel import ResourcePanel
 
 class Gui:
 
@@ -16,9 +17,11 @@ class Gui:
             manager= self.manager,
             starting_layer_height = 0
         )
-        loc = [0,0]
+        pos = (0,0)
         size = [self.width, self.height]
-        self.main_panel = MainDisplay(self, loc, size)
+        self.main_panel = MainDisplay(self, pos, size)
+        pos, size = (self.width/2,0), (self.width/2,self.height)
+        self.resource_panel = ResourcePanel(self,pos,size)
 
 
     def handle_button(self, button):
