@@ -29,3 +29,5 @@ AGE_GROUPS = {
     "adult":{2,3,4,5},
     "senior":{6,7}
 }
+
+RESOURCE_HEADER_NAMES = ["name","supply","demand"]

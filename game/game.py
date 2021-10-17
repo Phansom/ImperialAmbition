@@ -2,7 +2,7 @@ import pygame as pg
 import pygame_gui as pgui
 from gui.gui import Gui
 import sys
-from .economy.economy import Economy
+from game.economy.economy import Economy
 
 class Game:
 

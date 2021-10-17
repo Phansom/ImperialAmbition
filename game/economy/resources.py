@@ -80,4 +80,15 @@ default_resource_prices = {
     "tools": 12.0,
 }
 
-
+resource_list = [
+    "grain",
+    "fish",
+    "meat",
+    "wool",
+    "wood",
+    "stone",
+    "metal",
+    "clothes",
+    "furniture",
+    "tools"
+]

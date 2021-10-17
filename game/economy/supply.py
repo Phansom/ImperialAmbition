@@ -1,25 +1,38 @@
-from game.economy.resources import *
+from game.economy.economy import *
 
 
-class Production:
+class Supply:
     def __init__(self, economy, occupations, professions_list):
-        self.production_list = self.calc_production(economy, occupations, professions_list)
+        self.economy = economy
+        self.occupations = occupations
+        self.professions_list = professions_list
+        self.supply_list = self.calc_supply()
 
 
-    def update(self, economy, occupations, professions_list):
-        self.production_list = self.calc_production(economy, occupations, professions_list)
+    def update(self):
+        self.supply_list = self.calc_supply()
+
+
+    def update_supply(self):
+        pass
+
+
+    def calc_supply(self):
+        supply = self.calc_production()
+        return supply
 
 
     def calc_production_group(self, type):
         production = 0
-        for product in self.production_list:
+        for product in self.supply_list:
             product_type = get_resource_type(product)
             if product_type == type:
-                production += self.production_list[product]
+                production += self.supply_list[product]
         return production
 
 
-    def calc_production(self, economy, occupations, professions_list):
+    def calc_production(self):
+        economy, occupations, professions_list = self.economy, self.occupations, self.professions_list
         goods_produced = {}
 
         for occupation in occupations:
@@ -46,4 +59,6 @@ class Production:
 
         return goods_produced
 
-
+    # TODO: start implementing supply formulas.
+    def linear_supply(self):
+        pass

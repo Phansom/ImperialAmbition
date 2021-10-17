@@ -23,6 +23,10 @@ class Gui:
         pos, size = (self.width/2,0), (self.width/2,self.height)
         self.resource_panel = ResourcePanel(self,pos,size)
 
+    def update(self):
+        self.main_panel.update()
+        self.resource_panel.update()
+
 
     def handle_button(self, button):
         if button in self.main_panel.data_buttons:

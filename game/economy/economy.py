@@ -1,8 +1,7 @@
 from .land import Land
 from .work import Work
-from settings import DEMAND_RATE
 from .resources import *
-from .production import Production
+from .supply import Supply
 from .population import Population
 from .demand import Demand
 
@@ -14,21 +13,21 @@ class Economy:
         self.population = Population()
         self.business = Land()
         self.work = Work(self)
-        self.production = Production(self, self.work.occupations, self.work.professions_list)
-        self.demand = Demand(self)
-        self.supply = self.production.production_list
         self.resource_prices = default_resource_prices
+        self.supply = Supply(self, self.work.occupations, self.work.professions_list)
+        self.demand = Demand(self)
+
 
     def update(self):
         self.demand.update()
-        self.production.update(self, self.work.occupations, self.work.professions_list)
+        self.supply.update()
         self.resource_prices = self.update_resource_prices(self.resource_prices)
 
 
     def get_player_resource_data(self, resource):
         type = get_resource_type(resource)
         storage = get_resource_count(resource)
-        production = get_resource_production(self.production.production_list, resource)
+        production = get_resource_production(self.supply.supply_list, resource)
 
         consumption = {}
 
@@ -49,7 +48,7 @@ class Economy:
         return consumption
 
     def update_resource_prices(self, resource_prices):
-        prd_list = self.production.production_list
+        prd_list = self.supply.supply_list
         demand_list = self.demand.demand_list
         new_resource_prices = {}
 

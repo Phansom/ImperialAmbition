@@ -23,6 +23,9 @@ class MainDisplay:
         self.buttons_dict = self.buttons_list_to_dict(self.data_buttons)
 
 
+    def update(self):
+        pass
+
     def change_main_display(self, button_text):
         self.data_display.kill()
         display_txt = self.load_button_text_data(button_text)
@@ -30,20 +33,7 @@ class MainDisplay:
 
 
     def data_display_txt_home(self):
-        demand_data = self.economy.demand.demand_list
-        production_list = self.economy.production.production_list
-        demand = 0
-
-        txt = "<u>DATA DISPLAY HOME</u><br>"
-        txt += " <br><b>Resource: Stored (Supply/Demand):</b><br>"
-        for resource in production_list:
-            stored = self.economy.get_player_resource_data(resource)["storage"]
-            if resource in demand_data:
-                demand = int(demand_data[resource])
-            supply = int(production_list[resource])
-
-            txt += f'{resource}: {stored} ({supply}/{demand})<br>'
-
+        txt = 'data display home'
         return txt
 
 
