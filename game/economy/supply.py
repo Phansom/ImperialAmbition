@@ -61,4 +61,7 @@ class Supply:
 
     # TODO: start implementing supply formulas.
     def linear_supply(self):
+        aggregate_supply = "the total quantity of output"
+        qty_supplied = min_supplied + price_coefficient(market_price)
+
         pass

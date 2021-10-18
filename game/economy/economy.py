@@ -4,6 +4,7 @@ from .resources import *
 from .supply import Supply
 from .population import Population
 from .demand import Demand
+from data.economics_data import EconomicsData
 
 
 
@@ -16,10 +17,10 @@ class Economy:
         self.resource_prices = default_resource_prices
         self.supply = Supply(self, self.work.occupations, self.work.professions_list)
         self.demand = Demand(self)
+        self.eco_data = EconomicsData()
 
 
     def update(self):
-        self.demand.update()
         self.supply.update()
         self.resource_prices = self.update_resource_prices(self.resource_prices)
 

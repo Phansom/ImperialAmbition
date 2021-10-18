@@ -1,4 +1,6 @@
 from data.player_city import PLAYER_RESOURCES
+from data.resource_data import *
+
 
 def get_resource_type(resource):
     for type in resource_types:
@@ -39,56 +41,3 @@ def get_type_production(production_list, type):
 def get_type_consumption(consumption_list, type):
     for resource in consumption_list:
         resource_type = get_resource_type(resource)
-
-
-resource_types = {
-    "grain": "food",
-    "meat": "food",
-    "fish": "food",
-    "wood": "materials",
-    "stone": "materials",
-    "metal": "materials",
-    "clothes": "refined",
-    "furniture": "refined",
-    "tools": "refined",
-}
-
-service_types = {
-    "local_trade": "trade",
-    "regional_trade": "trade",
-    "construction": "construction"
-}
-
-construction_types = {
-    "resource",
-    "residential",
-    "commercial",
-    "industrial",
-    "infrastructure"
-}
-
-default_resource_prices = {
-    "grain":  1.0,
-    "fish": 1.25,
-    "meat": 1.5,
-    "wool": 1.0,
-    "wood": 1.25,
-    "stone": 2.5,
-    "metal": 5.0,
-    "clothes": 7.0,
-    "furniture": 8.0,
-    "tools": 12.0,
-}
-
-resource_list = [
-    "grain",
-    "fish",
-    "meat",
-    "wool",
-    "wood",
-    "stone",
-    "metal",
-    "clothes",
-    "furniture",
-    "tools"
-]
