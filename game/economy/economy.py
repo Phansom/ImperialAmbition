@@ -1,106 +1,94 @@
-from .land import Land
-from .work import Work
-from .resources import *
-from .supply import Supply
-from .population import Population
-from .demand import Demand
-from data.economics_data import EconomicsData
-
-
+import random
+from data.population_data import POSSIBLE_GENS
+from data.resource_data import RESOURCES
+from data.economics_data import ACTORS, DEMAND
+from settings import STARTING_COMMUNITIES, BASE_COMMUNITY_SIZE, DEFAULT_COMMUNITIES
+from util import find_key_parent
+from game.economy.community import Community
 
 class Economy:
-    def __init__(self, game):
-        self.game = game
-        self.population = Population()
-        self.business = Land()
-        self.work = Work(self)
-        self.resource_prices = default_resource_prices
-        self.supply = Supply(self, self.work.occupations, self.work.professions_list)
-        self.demand = Demand(self)
-        self.eco_data = EconomicsData()
+    def __init__(self):
+        self.available_gens = POSSIBLE_GENS
+        self.demand_types = list(DEMAND)
+        self.active_communities = self.setup_communities()
 
 
-    def update(self):
-        self.supply.update()
-        self.resource_prices = self.update_resource_prices(self.resource_prices)
+    def print(self):
+        return f'There are {self.workforce_size()} workers.\n'
 
 
-    def get_player_resource_data(self, resource):
-        type = get_resource_type(resource)
-        storage = get_resource_count(resource)
-        production = get_resource_production(self.supply.supply_list, resource)
-
-        consumption = {}
-
-        resource_data = {
-            "type": type,
-            "storage": storage,
-            "production": production,
-            "consumption": consumption
-        }
-        return resource_data
+    def workforce_size(self):
+        workforce = 0
+        for community in self.active_communities:
+            workforce += community.provided_labor()
+        return workforce
 
 
-    def calc_consumption(self, supply, demand):
-        consumption = demand
-        for item in consumption:
-            if supply[item] < consumption[item]:
-                consumption[item] = supply[item]
-        return consumption
-
-    def update_resource_prices(self, resource_prices):
-        prd_list = self.supply.supply_list
-        demand_list = self.demand.demand_list
-        new_resource_prices = {}
-
-        for resource in resource_prices:
-
-            supply, demand = 1, 1
-            if resource in prd_list:
-                supply = prd_list[resource]
-            if resource in demand_list:
-                demand = demand_list[resource]
-
-            original_price = default_resource_prices[resource]
-            old_price = resource_prices[resource]
-            trend_mult = self.trending_multiplier(supply,demand)
-            trending = self.trending_price(original_price, old_price, trend_mult)
-            new_price = self.resource_price_change(trending, old_price)
-            new_resource_prices[resource] = new_price
-
-            if resource == "grain":
-                print(f'''resource: {resource}
-                old_price: {old_price}
-                new_price: {new_price}
-                trending: {trending}
-                multiplier: {trend_mult}
-                ''')
-
-        return new_resource_prices
+    def get_community(self, gens):
+        return self.active_communities[gens]
 
 
-
-    def resource_price_change(self, trending, current):
-        new_price = (trending/current - 1)/2 * current + current
-        return new_price
-
-
-    def trending_multiplier(self, supply, demand):
-        if supply == 0:
-            supply = 1
-        if demand == 0:
-            demand = 1
-        trending_multiplier = demand/supply
-        return trending_multiplier
+    def setup_economy(self):
+        active_communities = self.setup_communities()
+        return active_communities
 
 
-    def trending_price(self, original_price, current_price, trending_multiplier):
-        price_consistency = (original_price/current_price)
-        trending_price = current_price * (trending_multiplier * price_consistency)
-        return trending_price
+    def setup_communities(self):
+        active_communities = {}
+        for i in range(DEFAULT_COMMUNITIES):
+            community = self.new_community()
+            active_communities[community.gens] = community
+        return active_communities
+
+
+    def new_community(self):
+        gens = random.choice(POSSIBLE_GENS)
+        members = random.randint(100, 200)
+        self.available_gens.remove(gens)
+        community = Community(gens=gens, members=members)
+        return community
+
+
+    def return_resource_list(self):
+        resource_list = []
+        for category in RESOURCES:
+            types = RESOURCES[category]
+            for type in types:
+                resources = types[type]
+                for resource in resources:
+                    resource_list.append(resource)
+        return resource_list
+
+
+    def return_actors(self):
+        actor_list = []
+        for actor in ACTORS:
+            actor_list.append(actor)
+        return actor_list
+
+
+    def return_resource_categories(self):
+        categories = []
+        for category in RESOURCES:
+            categories.append(category)
+        return categories
+
+
+    def find_type_category(self, resource_type):
+        category = find_key_parent(RESOURCES, resource_type)
+        return category
+
+
+    def return_resource_types(self):
+        resource_types = []
+        for category in RESOURCES:
+            types = RESOURCES[category]
+            for type in types:
+                resource_types.append(type)
+        return resource_types
 
 
 
-def anthrome_size(land_size, biome_size):
-    return land_size - biome_size
+economy = Economy()
+
 

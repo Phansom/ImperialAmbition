@@ -2,7 +2,7 @@ import pygame as pg
 import pygame_gui as pgui
 from gui.gui import Gui
 import sys
-from game.economy.economy import Economy
+from .economy.economy import Economy
 
 class Game:
 
@@ -12,7 +12,7 @@ class Game:
         self.clock = clock
         self.width, self.height = self.window_surface.get_size()
         self.manager = pgui.UIManager((self.width, self.height))
-        self.economy = Economy(self)
+        self.economy = Economy()
         self.gui = Gui(self, self.manager, window_surface, clock)
 
 

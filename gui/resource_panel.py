@@ -1,6 +1,5 @@
 from gui.panel import Panel
 from settings import RESOURCE_HEADER_NAMES
-from game.economy.economy import resource_list
 import util
 
 class ResourcePanel:
@@ -8,7 +7,6 @@ class ResourcePanel:
         self.gui = gui
         self.pos = pos
         self.size = size
-        self.resource_list = resource_list
         self.resource_panel = Panel(pos, size, gui)
         self.display = self.resource_display(self.resource_panel.panel)
 

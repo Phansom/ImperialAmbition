@@ -1,6 +1,5 @@
 import pygame_gui
 import pygame as pg
-from game.economy.resources import resource_types
 
 def new_label(container, manager, pos, size, txt):
     label = pygame_gui.elements.UITextBox(container=container,
@@ -19,3 +18,10 @@ def new_header(container, manager, pos, size, txt):
 
     return header
 
+
+def find_key_parent(d, key):
+    for k, v in d.items():
+        if isinstance(v,dict):
+            for k1, v1 in v.items():
+                if k1 == key:
+                    return k

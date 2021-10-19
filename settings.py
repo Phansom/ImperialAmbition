@@ -1,19 +1,6 @@
+DESIRED_HOUSEHOLD_SIZE = 6
+
 DATA_BUTTON_NAMES = ["home","pop", "work", "land","update"]
-
-
-DEMAND_RATE = {
-    "grain": 0.5,
-    "fish": 0.125,
-    "meat": 0.125,
-    "wool": 0.1,
-    "clothes": 0.1,
-    "furniture": 0.05,
-    "tools": 0.025
-}
-
-HOUSING_RATE = {
-    "residential": 0.2
-}
 
 AGE_RATES = {0: 0.23248,
              1: 0.18598,
@@ -31,3 +18,15 @@ AGE_GROUPS = {
 }
 
 RESOURCE_HEADER_NAMES = ["name","supply","demand"]
+
+STARTING_COMMUNITIES = {
+    "branch": 5
+}
+
+DEFAULT_LABOR_RATES = {
+    ""
+}
+
+
+BASE_COMMUNITY_SIZE = 4
+DEFAULT_COMMUNITIES = 3

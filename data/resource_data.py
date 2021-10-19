@@ -2,20 +2,32 @@
 # BIGGER/MORE COMPLEX REQUIRE MORE RESOURCES
 # TYPES OF RESOURCES: NATURAL RESOURCES, HUMAN RESOURCES, and CAPITAL GOODS
 
-resources = {
-    "natural": {"land","water","mineral","environmental"},
-    "human": {"labor"},
-    "capital":{"factory","tools"}
+RESOURCES = {
+    "natural": {"land": {
+        "area","value", "fertility"
+    },"hydro": {
+        "fresh_water","river_connectivity","port_access"
+    },"mineral": {
+        "iron", "coal", "gold", "stone"
+    }},
+
+    "human": {"labor": {
+        "unskilled","specialized"
+    }, "time": {
+        "duration", "quality"
+    }},
+
+    "capital":{"factory": {
+        "agriculture","extraction","commercial","production"
+    },"tools": {
+        "basic","logistical","industrial"
+    }}
 }
 
-goods = {
+GOOD_CATEGORIES = {
     "private",
     "public",
     "common",
     "club"
 }
-
-# TODO: KEEP REFACTORING RESOURCE_DATA
-
-
 

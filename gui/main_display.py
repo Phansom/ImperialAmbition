@@ -11,13 +11,8 @@ class MainDisplay:
         self.pos = (size[0] * 0.05, size[1] * 0.05)
         self.main_panel = Panel(self.pos, self.size, self.gui)
 
-        self.economy = self.gui.game.economy
-        self.pop_data = self.economy.population.pop_data()
-        self.work_data = self.economy.work.work_data
-        self.business_data = self.economy.business.business_data
 
         self.data_display_txt = self.data_display_txt_home()
-        self.pop_data_txt = self.pop_data_txt(self.pop_data)
         self.data_display = self.main_data_display(self.data_display_txt)
         self.data_buttons = self.data_buttons()
         self.buttons_dict = self.buttons_list_to_dict(self.data_buttons)
