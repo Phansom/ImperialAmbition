@@ -14,13 +14,13 @@ class Economy:
 
 
     def print(self):
-        return f'There are {self.workforce_size()} workers.\n'
+        return f'There are {self.workforce_size()} workers.'
 
 
     def workforce_size(self):
         workforce = 0
         for community in self.active_communities:
-            workforce += community.provided_labor()
+            workforce += self.active_communities[community].provided_labor()
         return workforce
 
 

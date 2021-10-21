@@ -3,6 +3,7 @@ import pygame_gui as pgui
 from gui.gui import Gui
 import sys
 from .economy.economy import Economy
+from .events import Event
 
 class Game:
 
@@ -12,8 +13,7 @@ class Game:
         self.clock = clock
         self.width, self.height = self.window_surface.get_size()
         self.manager = pgui.UIManager((self.width, self.height))
-        self.economy = Economy()
-        self.gui = Gui(self, self.manager, window_surface, clock)
+        self.gui = Gui(self, self.manager, window_surface)
 
 
     def run(self, time_delta):
@@ -40,7 +40,7 @@ class Game:
                     pass
             if event.type == pg.USEREVENT:
                 if event.user_type == pgui.UI_BUTTON_PRESSED:
-                    self.gui.handle_button(event.ui_element)
+                    triggered_event = Event(self, event.ui_element)
             self.manager.process_events(event)
 
     def draw(self):

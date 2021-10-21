@@ -30,3 +30,9 @@ DEFAULT_LABOR_RATES = {
 
 BASE_COMMUNITY_SIZE = 4
 DEFAULT_COMMUNITIES = 3
+
+TOOLBAR_ELEMENTS = [
+    "new",
+    "load",
+    "next"
+]

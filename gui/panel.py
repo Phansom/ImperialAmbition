@@ -2,10 +2,14 @@ import pygame_gui
 import pygame as pg
 
 class Panel:
-    def __init__(self, pos, size, parent):
+    def __init__(self, gui, parent, pos, size):
+        self.gui = gui
         self.pos = pos
         self.size = size
-        self.panel = pygame_gui.elements.UIPanel(
+        self.panel = self.set_panel(parent)
+
+    def set_panel(self, parent):
+        return pygame_gui.elements.UIPanel(
             relative_rect=pg.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1]),
             container=parent.window,
             manager=parent.manager,
@@ -15,3 +19,4 @@ class Panel:
                      'top': 'top',
                      'bottom': 'top'
                      })
+
