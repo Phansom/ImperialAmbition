@@ -6,6 +6,10 @@ from settings import STARTING_COMMUNITIES, BASE_COMMUNITY_SIZE, DEFAULT_COMMUNIT
 from util import find_key_parent
 from game.economy.community import Community
 
+
+# ECON MAY BE REPLACING THIS WHOLESALE
+
+
 class Economy:
     def __init__(self):
         self.available_gens = POSSIBLE_GENS
@@ -13,8 +17,13 @@ class Economy:
         self.active_communities = self.setup_communities()
 
 
+
     def print(self):
         return f'There are {self.workforce_size()} workers.'
+
+
+    def update(self):
+        pass
 
 
     def workforce_size(self):

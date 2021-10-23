@@ -1,9 +1,7 @@
 import pygame as pg
 import pygame_gui as pgui
 from .main_display import MainDisplay
-from .resource_panel import ResourcePanel
-from .panel import Panel
-from game.events import new_game, load_game, economy_cycle
+
 
 class Gui:
 

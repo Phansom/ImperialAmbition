@@ -36,3 +36,11 @@ TOOLBAR_ELEMENTS = [
     "load",
     "next"
 ]
+
+
+ACTION_PANEL_ELEMENTS = [
+    "STATE",
+    "ECONOMY",
+    "POLITICS",
+    "FAMILY"
+]

@@ -2,59 +2,56 @@ import pygame_gui as pgui
 import pygame as pg
 from .economy.economy import Economy
 
+
 class Event:
     def __init__(self, game, trigger):
         self.game = game
-        self.notif_panel = self.game.gui.main_display.notification_panel
+        self.notification_display = self.game.gui.main_display.notification_display
         self.main_panel = self.game.gui.main_display.main_panel
-        events = {
-            "new": new_game(game),
-            "load": load_game(),
-            "next": economy_cycle()
-        }
-        if trigger in self.game.gui.main_display.toolbar_elements:
+
+        if trigger.text in self.toolbar_events():
+            events = self.toolbar_events()
             event = events[trigger.text]
+            event()
+            self.notification_pin = self.new_notification_pin(trigger)
 
-        container_size = self.notif_panel.size
-        w, h = container_size[0] - 30, container_size[1] * 0.05
-        x, y = 10, 10
+
+    def new_notification_pin(self, trigger):
+        container_size = self.notification_display.size
+        w, h = container_size[0] * 0.9, container_size[1] * 0.05
+        x, y = container_size[0] * 0.03, container_size[1] * 0.008
         pos, size = (x,y), (w,h)
-        self.notification_pin = self.new_notification_pin(trigger,pos,size)
 
-
-    def new_notification_pin(self, trigger, pos, size):
         button = pgui.elements.UIButton(
-            text=trigger.text,
             manager=self.game.manager,
+            container=self.notification_display.panel,
             relative_rect=pg.Rect(pos,size),
-            container=self.notif_panel.panel
-
+            text = trigger.text,
         )
         return button
 
 
-    def trigger_notification_pin(self):
-        self.display_notification()
+    def toolbar_events(self):
+        events = {"new": self.new_game,
+                  "load": self.load_game,
+                  "next": self.economy_cycle}
+
+        return events
 
 
-    def display_notification(self):
-        text_box = pgui.elements.UITextBox(
-            html_text="text goes here",
-            manager = self.game.manager,
-            relative_rect = pg.Rect((10,10),(-1,-1)),
-            container=self.main_panel.panel
-        )
-        return text_box
+    def new_game(self):
+        self.game.economy = Economy()
+        return self.game.economy.print()
 
 
+    def load_game(self):
+        print("load_game")
+        return "load_game"
 
 
-def new_game(game):
-    game.economy = Economy()
-    return game.economy.print()
-
-def load_game():
-    return "load_game"
-
-def economy_cycle():
-    return "economy_cycle"
+    def economy_cycle(self):
+        if self.game.economy is None:
+            return "There is no Economy object!"
+        self.game.economy.update()
+        display_text = self.game.economy.print()
+        return self.game.gui.main_display.notification_display.popup(display_text)

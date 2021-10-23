@@ -14,6 +14,7 @@ class Game:
         self.width, self.height = self.window_surface.get_size()
         self.manager = pgui.UIManager((self.width, self.height))
         self.gui = Gui(self, self.manager, window_surface)
+        self.economy = None
 
 
     def run(self, time_delta):
@@ -43,7 +44,20 @@ class Game:
                     triggered_event = Event(self, event.ui_element)
             self.manager.process_events(event)
 
+
     def draw(self):
         self.window_surface.blit(self.background, (0,0))
         self.manager.draw_ui(self.window_surface)
+
+
+    def save(self,save_name, save_data):
+        f = open(f"{save_name}.txt","w")
+        f.write(save_data)
+        f.close()
+
+    def load(self, save_name):
+        f = open(f"{save_name}.txt","r")
+        print(f.read())
+
+
 
