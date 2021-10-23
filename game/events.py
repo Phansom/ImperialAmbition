@@ -1,6 +1,5 @@
 import pygame_gui as pgui
 import pygame as pg
-from .economy.economy import Economy
 
 
 class Event:
@@ -40,8 +39,8 @@ class Event:
 
 
     def new_game(self):
-        self.game.economy = Economy()
-        return self.game.economy.print()
+        pass
+
 
 
     def load_game(self):

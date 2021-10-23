@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from settings import AGE_RATES, AGE_GROUPS, DESIRED_HOUSEHOLD_SIZE
+from data.economics_data import AGE_RATES, AGE_GROUPS
+from settings import DESIRED_HOUSEHOLD_SIZE
 
 @dataclass
 class Community:

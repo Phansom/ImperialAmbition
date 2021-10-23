@@ -1,103 +1,104 @@
-import random
-from data.population_data import POSSIBLE_GENS
-from data.resource_data import RESOURCES
-from data.economics_data import ACTORS, DEMAND
-from settings import STARTING_COMMUNITIES, BASE_COMMUNITY_SIZE, DEFAULT_COMMUNITIES
-from util import find_key_parent
-from game.economy.community import Community
+from dataclasses import dataclass
+from data.economics_data import STARTING_ACTORS
+
+# WIP; elements of economy are to be worked in and restructured around this class, before refactoring name to economy
 
 
-# ECON MAY BE REPLACING THIS WHOLESALE
+
+@dataclass
+class Business:
+    name: str
+    workers: int
 
 
-class Economy:
+@dataclass
+class Community:
+    name: str
+    population: int
+
+ACTOR_TYPES = {
+    "community": Community,
+    "business": Business
+}
+
+
+
+@dataclass
+class Location:
+    name: str
+    actors: dict
+
     def __init__(self):
-        self.available_gens = POSSIBLE_GENS
-        self.demand_types = list(DEMAND)
-        self.active_communities = self.setup_communities()
+        self.actors = self.generate_starting_actors()
+        print(self.actors)
+
+
+    def generate_starting_actors(self):
+        objects = {}
+        for actor_type in STARTING_ACTORS:
+            actor_data = STARTING_ACTORS[actor_type]
+            for actor in actor_data:
+                k = actor_data[actor]
+                objects[actor] = k
+        return objects
 
 
 
-    def print(self):
-        return f'There are {self.workforce_size()} workers.'
 
 
-    def update(self):
-        pass
-
-
-    def workforce_size(self):
-        workforce = 0
-        for community in self.active_communities:
-            workforce += self.active_communities[community].provided_labor()
-        return workforce
-
-
-    def get_community(self, gens):
-        return self.active_communities[gens]
-
-
-    def setup_economy(self):
-        active_communities = self.setup_communities()
-        return active_communities
-
-
-    def setup_communities(self):
-        active_communities = {}
-        for i in range(DEFAULT_COMMUNITIES):
-            community = self.new_community()
-            active_communities[community.gens] = community
-        return active_communities
-
-
-    def new_community(self):
-        gens = random.choice(POSSIBLE_GENS)
-        members = random.randint(100, 200)
-        self.available_gens.remove(gens)
-        community = Community(gens=gens, members=members)
-        return community
-
-
-    def return_resource_list(self):
-        resource_list = []
-        for category in RESOURCES:
-            types = RESOURCES[category]
-            for type in types:
-                resources = types[type]
-                for resource in resources:
-                    resource_list.append(resource)
-        return resource_list
-
-
-    def return_actors(self):
-        actor_list = []
-        for actor in ACTORS:
-            actor_list.append(actor)
-        return actor_list
-
-
-    def return_resource_categories(self):
-        categories = []
-        for category in RESOURCES:
-            categories.append(category)
-        return categories
-
-
-    def find_type_category(self, resource_type):
-        category = find_key_parent(RESOURCES, resource_type)
-        return category
-
-
-    def return_resource_types(self):
-        resource_types = []
-        for category in RESOURCES:
-            types = RESOURCES[category]
-            for type in types:
-                resource_types.append(type)
-        return resource_types
+    def new_business(self, type, value_dict):
+        businesses = self.actors["business"]
+        if type in businesses:
+            existing_business = businesses[type]
+            for data in existing_business:
+                value = existing_business[data]
+                if value in value_dict:
+                    value += value_dict[data]
+                    existing_business[data] = value
+            return existing_business
+        else:
+            businesses = self.actors["business"]
+            businesses[type] = value_dict
+            return businesses
 
 
 
-economy = Economy()
+    def get_actor_data(self, data_key):
+        for actor in self.actors:
+            print(actor)
 
 
+actor_data = {
+    "grain_farm":
+        {"supply":
+             {"grain":4},
+         "demand":
+             {"labor":1,"farmland":1},
+         },
+    "sheep_pasture":
+        {"supply":
+             {"meat":1,"wool":2},
+         "demand":
+             {"labor":1,"rangeland":1}
+         },
+    "weaver":
+        {"supply":
+             {"clothes":1},
+         "demand":
+             {"labor":1,"wool":3,"industry":1}
+        },
+    "logger":
+        {"supply":
+             {"logs":2},
+         "demand":
+             {"labor":1,"woodland":1}
+        },
+    "builder":
+        {"supply":
+             {"structure":0.1},
+         "demand":
+             {"labor":1,"logs":1}
+        }
+}
+
+location = Location()
