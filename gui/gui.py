@@ -1,6 +1,6 @@
 import pygame as pg
 import pygame_gui as pgui
-from .display.main_display import MainDisplay
+from .panels import *
 
 
 class Gui:
@@ -13,8 +13,25 @@ class Gui:
         self.load_background()
         self.window = pgui.elements.UIPanel(manager = manager, starting_layer_height = 1, relative_rect = pg.Rect((0,0),(self.width, self.height)))
         self.window.set_image(pg.image.load('images/transparent.png'))
-        w, h, x, y = self.width, self.height, 0, 0
-        self.main_display = MainDisplay(self,size=(w,h),pos=(x,y))
+
+        self.toolbar = Toolbar(self)
+        self.action_menu = ActionMenu(self)
+        self.notification_display = NotificationDisplay(self)
+        self.viewport = Viewport(self)
+        self.submenu = SubMenu(self)
+        self.alert_window = AlertWindow(self, self.viewport)
+
+
+    def gui_sub_panel(self,pos,size,container=None):
+        if container is None:
+            container = self.window
+
+        return pgui.elements.UIPanel(
+            relative_rect=pg.Rect(pos,size),
+            container=container,
+            manager=self.manager,
+            starting_layer_height=1
+        )
 
 
     def update(self):

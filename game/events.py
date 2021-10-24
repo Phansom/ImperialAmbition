@@ -1,6 +1,5 @@
 import pygame_gui as pgui
 import pygame as pg
-from gui.panel import Panel
 
 
 class Event:
@@ -24,14 +23,11 @@ class Event:
         return txtbox
 
 
-
-
     def alert_panel(self):
         container = self.main_panel
         width, height = container.size[0] * 0.6,container.size[1] * 0.8
         x, y = container.size[0] * 0.2,container.size[1] * 0.1
         pos, size = (x, y), (width,height)
-        alert_panel = Panel(self.game.gui,container,pos,size)
         return alert_panel
 
 
@@ -53,7 +49,8 @@ class Event:
     def toolbar_events(self):
         events = {"new": self.new_game,
                   "load": self.load_game,
-                  "next": self.economy_cycle}
+                  "next": self.economy_cycle
+                  }
 
         return events
 
@@ -61,7 +58,6 @@ class Event:
     def new_game(self):
         location = self.game.economy.generate_starting_location()
         return location
-
 
 
     def load_game(self):
