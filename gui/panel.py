@@ -6,7 +6,8 @@ class Panel:
         self.gui = gui
         self.pos = pos
         self.size = size
-        self.panel = self.set_panel(parent)
+        self.manager = gui.manager
+        self.window = self.set_panel(parent)
 
     def set_panel(self, parent):
         return pygame_gui.elements.UIPanel(

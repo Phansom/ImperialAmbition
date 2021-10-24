@@ -1,6 +1,6 @@
 import pygame as pg
 import pygame_gui as pgui
-from .panel import Panel
+from gui.panel import Panel
 from settings import DATA_BUTTON_NAMES, TOOLBAR_ELEMENTS, ACTION_PANEL_ELEMENTS
 from gui.display.notification_display import NotificationDisplay
 
@@ -41,7 +41,7 @@ class MainDisplay:
             size = w, h
             button = pgui.elements.UIButton(
                 manager= self.manager,
-                container = self.toolbar.panel,
+                container = self.toolbar.window,
                 relative_rect = pg.Rect(pos, size),
                 text = item
             )
@@ -59,7 +59,7 @@ class MainDisplay:
             size = w, h
             button = pgui.elements.UIButton(
                 manager= self.manager,
-                container = self.action_panel.panel,
+                container = self.action_panel.window,
                 relative_rect = pg.Rect(pos, size),
                 text = item
             )

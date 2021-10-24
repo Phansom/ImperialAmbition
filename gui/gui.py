@@ -1,6 +1,6 @@
 import pygame as pg
 import pygame_gui as pgui
-from .main_display import MainDisplay
+from .display.main_display import MainDisplay
 
 
 class Gui:

@@ -20,7 +20,7 @@ class Community:
 
 
     def get_housing_demand(self):
-        return self.members/DESIRED_HOUSEHOLD_SIZE
+        return self.members / DESIRED_HOUSEHOLD_SIZE
 
 
     def get_age_count(self, age_group):

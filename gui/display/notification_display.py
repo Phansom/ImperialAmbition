@@ -12,18 +12,9 @@ class NotificationDisplay:
         self.pos = pos
         self.size = size
         self.display_panel = Panel(gui, gui, self.pos, self.size)
-        self.panel = self.display_panel.panel
+        self.window = self.display_panel.window
 
 
-    def popup(self, notification):
-        buttons = {}
-        size = self.main_display.size[0] * 0.5, self.main_display.size[1] * 0.5
-        pos = size[0]/2,size[1]/2
-        popup_panel = Panel(self.gui,self.main_display,pos,size)
-        txt_box = pgui.elements.UITextBox(
-            manager = self.gui.manager,
-            container = popup_panel.panel,
-            relative_rect = pg.Rect((size[0]*0.1, size[1]*0.1),(size[0]*0.75,size[1]*0.75)),
-            html_text = notification
-        )
-        return popup_panel
+    def print(self, text):
+        pass
+

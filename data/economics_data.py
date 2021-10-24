@@ -62,10 +62,6 @@ DEMAND = {
     }
 }
 
-SUPPLY = {
-    "production": {},
-    "imports": {},
-}
 
 RESOURCES = {
     "natural": {"land": {
@@ -99,46 +95,38 @@ GOOD_CATEGORIES = {
 PUBLIC_RESOURCES = ["land", "hydro", "mineral"]
 PRIVATE_RESOURCES = ["labor", "factory", "tools"]
 
-STARTING_RESOURCES = {
-    "land": {"makeup":{
-                 "biome":{
-                     "grassland":600,
-                     "forest":250,
-                     "aquatic":0,
-                     "desert":0,
-                     "tundra":0
-                    },
-                 "anthrome": {
-                     "urban":5,
-                     "suburban":15,
-                     "farmland":40,
-                     "woodland":40,
-                     "rangeland":25,
-                     "wildland":25
-                    }
-                },
-             "suitability": {
-                 "farmland": 1.0,
-                 "woodland": 0.9,
-                 "rangeland": 1.0,
-                 "wildland": 0.7
-                }
-             }
-}
-
-
-STARTING_ACTORS = {
-    "community": {"Julia": {
-        "population": 100,
-        "private_resources": {
+actor_data = {
+    "grain_farm":
+        {"supply":
+             {"grain":4},
+         "demand":
+             {"labor":1,"farmland":1},
+         },
+    "sheep_pasture":
+        {"supply":
+             {"meat":1,"wool":2},
+         "demand":
+             {"labor":1,"rangeland":1}
+         },
+    "weaver":
+        {"supply":
+             {"clothes":1},
+         "demand":
+             {"labor":1,"wool":3,"industry":1}
+        },
+    "logger":
+        {"supply":
+             {"logs":2},
+         "demand":
+             {"labor":1,"woodland":1}
+        },
+    "builder":
+        {"supply":
+             {"structure":0.1},
+         "demand":
+             {"labor":1,"logs":1}
         }
-    }, "Octavia": {
-        "population": 80,
-        "private_resources": {}
-    }},
 }
-
-
 
 
 POSSIBLE_GENS = ["Aemilia",

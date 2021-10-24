@@ -3,6 +3,7 @@ import pygame_gui as pgui
 from gui.gui import Gui
 import sys
 from .events import Event
+from .economy.economy import Economy
 
 class Game:
 
@@ -13,7 +14,7 @@ class Game:
         self.width, self.height = self.window_surface.get_size()
         self.manager = pgui.UIManager((self.width, self.height))
         self.gui = Gui(self, self.manager, window_surface)
-        self.economy = None
+        self.economy = Economy()
 
 
     def run(self, time_delta):

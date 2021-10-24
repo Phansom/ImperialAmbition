@@ -1,5 +1,6 @@
 import pygame_gui as pgui
 import pygame as pg
+from gui.panel import Panel
 
 
 class Event:
@@ -9,10 +10,29 @@ class Event:
         self.main_panel = self.game.gui.main_display.main_panel
 
         if trigger.text in self.toolbar_events():
-            events = self.toolbar_events()
-            event = events[trigger.text]
-            event()
-            self.notification_pin = self.new_notification_pin(trigger)
+            self.alert_panel = self.alert_panel()
+            self.alert_text(self.alert_panel,"For the republic!")
+
+
+    def alert_text(self, panel, text):
+        pos = (panel.size[0] * 0.05,panel.size[1] * 0.05)
+        size = (panel.size[0] * 0.9,panel.size[1] * 0.4)
+        txtbox = pgui.elements.UITextBox(container=panel.window,
+                                         manager=panel.manager,
+                                         relative_rect=pg.Rect(pos,size),
+                                         html_text=text)
+        return txtbox
+
+
+
+
+    def alert_panel(self):
+        container = self.main_panel
+        width, height = container.size[0] * 0.6,container.size[1] * 0.8
+        x, y = container.size[0] * 0.2,container.size[1] * 0.1
+        pos, size = (x, y), (width,height)
+        alert_panel = Panel(self.game.gui,container,pos,size)
+        return alert_panel
 
 
     def new_notification_pin(self, trigger):
@@ -39,18 +59,18 @@ class Event:
 
 
     def new_game(self):
-        pass
+        location = self.game.economy.generate_starting_location()
+        return location
 
 
 
     def load_game(self):
-        print("load_game")
-        return "load_game"
+        self.notification_display.print(self.game.economy.to_text())
 
 
     def economy_cycle(self):
         if self.game.economy is None:
             return "There is no Economy object!"
         self.game.economy.update()
-        display_text = self.game.economy.print()
-        return self.game.gui.main_display.notification_display.popup(display_text)
+        display_text = self.game.economy.to_text()
+        return self.game.gui.main_display.notification_display.print(display_text)
