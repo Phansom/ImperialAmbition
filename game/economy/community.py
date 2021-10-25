@@ -4,7 +4,8 @@ from settings import DESIRED_HOUSEHOLD_SIZE
 
 @dataclass
 class Community:
-    def __init__(self, gens, members):
+    def __init__(self, location, gens, members):
+        self.location = location
         self.gens = gens
         self.members = members
         self.children = self.get_age_count("adolescent")

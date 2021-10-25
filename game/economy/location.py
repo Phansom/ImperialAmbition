@@ -8,7 +8,9 @@ from .business import Business
 
 ACTOR_TYPES = {
     "community": Community,
-    "business": Business
+    "business": Business,
+    "state": None,
+    "society": None
 }
 
 
@@ -22,7 +24,6 @@ class Location:
         self.actors = {}
         if starting:
             self.actors = self.generate_starting_actors()
-        print(self.actors)
 
 
     def generate_starting_actors(self):

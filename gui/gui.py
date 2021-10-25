@@ -38,10 +38,6 @@ class Gui:
         pass
 
 
-    def change_main_display(self):
-        pass
-
-
     def load_background(self):
         background = pg.image.load('images/background.png').convert_alpha()
         self.window_surface.blit(background,(0,0))

@@ -5,8 +5,6 @@ class Notification:
         self.effect = effect
         self.display = display
 
-    def print(self):
-        return f'A notification should happen.'
 
 
 
